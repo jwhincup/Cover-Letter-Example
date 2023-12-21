@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cover Letter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Jost', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            font-family: 'Silkscreen', serif;
+        }
+
+        .gradient-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 200%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            z-index: 1;
+        }
+
+        .default-gradient {
+            background-image: linear-gradient(to bottom, white, silver, silver, white);
+        }
+
+        .xrt-gradient {
+            background-image: linear-gradient(to bottom, aqua, fuchsia);
+        }
+
+        .i27-gradient {
+            background-image: linear-gradient(to bottom, white, silver, white);
+        }
+
+        .yama-gradient {
+            background-image: linear-gradient(to bottom, black, orange, gold, black);
+        }
+
+        .page {
+            font-size: clamp(.5rem, 1 vw, 1.5rem); /* Adjust these values as needed */
+            position: relative;
+            max-width: 800px;
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 5;
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            width: calc(50vw - 400px); /* Adjust based on your layout */
+            z-index: 10;
+        }
+
+        .logo-wrapper {
+          margin-left: 2vw;
+          display: flex;
+          width: 100%; /* Full width of the container */
+          text-align: center; /* Center the content */
+            animation: none;
+        }
+
+        @keyframes fadeAndClone {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0.5) translate(0, 0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1) translate(50vw, 50vh);
+            }
+        }
+
+        .logo {
+          width: 70%; /* Make the logo take the full width of its container */
+          height: auto; /* Maintain aspect ratio */
+          display: block; /* Ensures the image takes the full container width */
+        }
+
+        .emoji-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: 3vw;
+            background-repeat: repeat;
+            opacity: 0;
+            transition: opacity 1s, background-image 0.5s;
+            z-index: 3;
+        }
+
+        .typewriter p {
+            margin-bottom: 20px;
+        }
+
+        .get-in-touch {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: red;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: opacity 0.5s, transform 0.5s;
+            opacity: 0; /* Initially hidden */
+            z-index: 11; /* Higher than any other element */
+        }
+
+
+        .cursor {
+            display: inline-block;
+            background-color: black;
+            width: 2px;
+            margin-left: 2px;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page {
+              margin: 4% auto; /* Increased margin for smaller screens */
+
+                padding: 10px;
+            }
+        }
+
+        @keyframes fadeInAndGrow {
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(2);
+            }
+        }
+
+        .emoji-animation {
+            width: 30px; /* Adjust this value as needed */
+            height: 30px; /* Adjust this value as needed */
+            transition: transform 1s ease-in-out;
+        }
+
+        .social-email-container {
+        position: fixed;
+        top: 30px; /* Adjust as needed */
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 800px;
+        width: calc(100% - 60px); /* 30px margin on each side */
+        margin: 0 30px;
+        z-index: 12;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: none;
+        visibility: hidden; /* Initially hidden */
+        opacity: 0; /* Initially transparent */
+        transition: visibility 0s, opacity 0.5s linear; /* Transition for visibility and opacity */
+}
+    }
+
+
+
+
+        .social-icon {
+    /* Example: Rounded, padded, border, hover effect */
+    display: inline-block;
+    padding: 8px 16px;
+    border: 2px solid #4F46E5; /* Indigo shade */
+    border-radius: 999px; /* Fully rounded */
+    text-decoration: none;
+    color: #4F46E5; /* Indigo shade */
+    transition: background-color 0.3s, color 0.3s;
+
+    /* Hover effect */
+    &:hover {
+        background-color: #4F46E5; /* Indigo shade */
+        color: white;
+    }
+}
+
+.input-field {
+    /* Example: Full width, padding, border, rounded */
+    width: 100%;
+    padding: 8px 16px;
+    border: 2px solid #E5E7EB; /* Light gray */
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.submit-btn {
+    /* Example: Indigo button, hover effect */
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #4F46E5; /* Indigo shade */
+    color: white;
+    border-radius: 999px; /* Fully rounded */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    /* Hover effect */
+    &:hover {
+        background-color: #4338CA; /* Darker indigo */
+    }
+}
+
+@keyframes fadeInBounce {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    75% {
+        transform: scale(0.98);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.animate-fade-in-bounce {
+    animation: fadeInBounce 1s ease-in-out;
+}
+
+
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    <div class="content-wrapper">
+        <div class="logo-container">
+            <div class="logo-wrapper" id="logo-xr">
+                <img src="https://xrtherapeutics.co.uk/wp-content/themes/xr/assets/img/new_logo.svg" alt="XR Therapeutics Logo" class="logo">
+            </div>
+            <div class="logo-wrapper" id="logo-infinity27">
+                <img src="https://infinity27.com/wp-content/uploads/2020/11/cropped-INFINITY27.jpg" alt="Infinity27 Logo" class="logo">
+            </div>
+            <div class="logo-wrapper" id="logo-yama">
+                <img src="https://i0.wp.com/yama.studio/wp-content/uploads/2023/01/YAMA-LOGO-MED-2023-GREY.png" alt="Yama Studio Logo" class="logo">
+            </div>
+        </div>
+
+        <div class="gradient-background default-gradient"></div>
+        <div class="gradient-background xrt-gradient"></div>
+        <div class="gradient-background i27-gradient"></div>
+        <div class="gradient-background yama-gradient"></div>
+ <div id="emoji-container" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 3;"></div>
+ <div id="social-email-container" class="max-w-lg mx-auto p-4 bg-white rounded shadow-lg fixed inset-0 m-30">
+     <div class="social-links flex justify-center space-x-4 my-4">
+         <!-- Social Icons -->
+         <a href="https://www.linkedin.com/in/jwhincup/" class="social-icon">LinkedIn</a>
+         <a href="https://www.artstation.com/jwhincup" class="social-icon">ArtStation</a>
+         <a href="https://sketchfab.com/jwhincup/models" class="social-icon">Sketchfab</a>
+     </div>
+     <div class="email-form bg-white p-6 rounded-lg shadow-md">
+         <h2 class="text-lg font-bold mb-4">Send an email to Jordan Whincup</h2>
+         <form action= action="https://formspree.io/f/mqkrzdlk" method="post">
+            <input type="email" name="sender" placeholder="Your Email" required class="input-field"/>
+            <input type="email" name="cc" placeholder="CC" class="input-field"/>
+            <textarea name="message" placeholder="Your Message" required class="input-field" style="resize: vertical; max-height: 200%;"></textarea>
+            <button type="submit" class="submit-btn">Send</button>
+         </form>
+     </div>
+ </div>
+
+        <div class="page typewriter" style="position: relative; z-index: 4;">
+    <h1 class="text-3xl font-bold text-center mb-8" data-full-text="Cover Letter">
+        <span class="text"></span><span class="cursor"></span>
+    </h1>
+    <p class="hello" data-full-text="Dear Hiring Committee,">
+        <span class="text"></span><span class="cursor"></span>
+    </p>
+    <p data-full-text="I am writing to express my enthusiastic interest in the Principal 3D Artist position at Twin Swans, as advertised. With over 2 years of experience in 3D artistry within the videogame industry, I am excited about the opportunity to contribute to your team and help create an immersive and visually compelling gaming experience.">
+        <span class="text"></span><span class="cursor"></span>
+    </p>
+    <p class="xr-bg" data-full-text="In my recent role at XR Therapeutics, I honed my skills in creating, modifying, and texturing 3D assets, which are crucial for a principal artist. My experience with SBSARs and Character Creation using CC3, along with integrating immersive worlds in Unity and Metaverse platforms, aligns well with your requirement for someone adept at taking assets from concept to integration.">
+        <span class="text"></span><span class="cursor"></span>
+    </p>
+    <p class="infinity27-bg" data-full-text="Furthermore, in my role as an Intern 3D Real Time Artist at Infinity27, I designed, modelled, texture painted, and integrated into UE5 a low-to-high stylised weapon. This equipped me with the necessary skills to produce game-ready 3D assets under strict performance budgets, a key requirement for your studio.">
+        <span class="text"></span><span class="cursor"></span>
+    </p>
+    <p class="yama-studio-bg" data-full-text="At Yama Studio, I successfully created 3D Pre-visualisations for a music-themed metaverse, demonstrating my ability to work to a range of styles and meet client briefs effectively.">
+        <span class="text"></span><span class="cursor"></span>
+    </p>
+    <p data-full-text="My academic background in Computer Animation and Visual Effects from the University of Northumbria, combined with my proficiency in a wide array of software like Autodesk Maya, Blender, Substance 3D Painter, and ZBrush, has provided me with a solid foundation in 3D artistry. These skills, complemented by my experience with Unity, Unreal Engine, and various other tools, position me well to meet the diverse and dynamic needs of your studio.">
+       <span class="text"></span><span class="cursor"></span>
+   </p>
+   <p data-full-text="I am particularly drawn to the role at Twin Swans due to its focus on fostering an inclusive and supportive creative culture. I am passionate about working collaboratively with environment artists, level designers, and producers to build cohesive and visually stunning game worlds. My experience in a production environment, adhering to asset time budgets, and my flexible working style make me a suitable candidate for your team, especially in a fully remote setting.">
+       <span class="text"></span><span class="cursor"></span>
+   </p>
+   <p data-full-text="I am comfortable working alongside the GMT time zone and am excited about the possibility of contributing to your next groundbreaking 3D first-person title. I believe my multifaceted approach and my eagerness to engage in innovative projects will make a significant impact on your team.">
+       <span class="text"></span><span class="cursor"></span>
+   </p>
+   <p data-full-text="Enclosed is my portfolio, which showcases a range of my work. I look forward to the opportunity to discuss how my skills and experiences align with the needs of your studio. Thank you for considering my application. I am eager to bring my passion for 3D artistry to Twin Swans and contribute to your success.">
+       <span class="text"></span><span class="cursor"></span>
+   </p>
+   <p data-full-text="Sincerely,">
+       <span class="text"></span><span class="cursor"></span>
+   </p>
+   <p data-full-text="Jordan Whincup">
+       <span class="text"></span><span class="cursor"></span>
+   </p>
+   <!-- Tooltip for spacebar functionality -->
+   <div id="tooltip" style="display: none; position: fixed; bottom: 50px; left: 50%; transform: translateX(-50%); background-color: darkgrey; color: lightgrey; padding: 5px 10px; border-radius: 5px;">Press Space to Skip</div>
+</div>
+
+    </div>
+
+    <script>
+    // Emoji Mapping
+    const emojiMapping = {
+        "Dear Hiring Committee": "1F44B", // 👋
+        "Principal 3D Artist": "1F3A8", // 🎨
+        "videogame industry": "1F3AE", // 🎮
+        "3D artistry": "1F58C", // 🖌
+        "Character Creation": "1F464", // 👤
+        "Unity and Metaverse platforms": "1F310", // 🌐
+        "concept to integration": "1F504", // 🔄
+        "Intern Junior 3D Artist": "1F393", // Graduation Cap (🎓)
+        "game-ready 3D assets": "1F3B2", // 🎲
+        "music-themed metaverse": "1F3B5", // 🎵
+        "University of Northumbria": "1F3EB" // 🏫
+    };
+
+    // Typing Speed Configuration
+    let typingSpeedWPM = 400;
+    const averageWordsPerCharacter = 1 / 5;
+    const baseDelayPerCharacter = (60 / typingSpeedWPM) / averageWordsPerCharacter * 100;
+
+    // Paragraph Initialization
+    const paragraphs = document.querySelectorAll('.typewriter p');
+    let currentParagraph = 0;
+
+    // Responsive Size Window
+    let viewportWidth = window.innerWidth;
+    let viewportHeight = window.innerHeight;
+    // Responsive Grid Layout
+    let totalRows, totalCols;
+
+    function calculateGridDimensions() {
+        const emojiSpacing = 30; // Set as a global variable if changed dynamically
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+
+        totalCols = Math.floor(viewportWidth / emojiSpacing);
+        totalRows = Math.floor(viewportHeight / emojiSpacing);
+    }
+    // Emoji Anim FX Parims
+    let waveDelay = 100; // Adjust as needed for wave speed
+    let maxEmojiOpacity = 1; // Start with full opacity
+
+    function initializeParagraphs() {
+        document.querySelector('h1').style.opacity = 0; // Initialize h1 opacity
+        paragraphs.forEach(p => p.style.opacity = 0); // Initialize paragraph opacity
+    }
+
+    function getRandomDelay() {
+        const chance = Math.random();
+        if (chance < 0.85) {
+            return baseDelayPerCharacter * (Math.random() * 0.4);
+        } else if (chance < 0.98) {
+            return baseDelayPerCharacter * 2 * (Math.random() * 0.4);
+        } else {
+            return baseDelayPerCharacter * 10 * (Math.random() * 0.4);
+        }
+    }
+
+    let characterCount = 0;
+    function checkAndTriggerEmoji(text) {
+        characterCount++;
+        if (characterCount >= 7) {
+            characterCount = 0;
+            Object.keys(emojiMapping).forEach(key => {
+                if (text.includes(key)) {
+                    createAndAnimateEmoji(emojiMapping[key]);
+                }
+            });
+        }
+    }
+
+    function showTooltip() {
+        const tooltip = document.getElementById('tooltip');
+        tooltip.style.display = 'block';
+        setTimeout(() => tooltip.style.display = 'none', 3000);
+    }
+    // Revised emoji creation and animation function
+    function createAndAnimateEmoji(emojiCode, row, col, emojiSpacing, initialOpacity) {
+        console.log(`Creating emoji: ${emojiCode} at row: ${row}, col: ${col}`);
+
+        const emojiElement = document.createElement('img');
+        emojiElement.src = `https://openmoji.org/data/color/svg/${emojiCode}.svg`;
+        emojiElement.classList.add('emoji-animation');
+        emojiElement.style.position = 'absolute';
+        emojiElement.style.left = `${col * emojiSpacing}px`;
+        emojiElement.style.top = `${row * emojiSpacing}px`;
+        emojiElement.style.opacity = 0;
+        document.getElementById('emoji-container').appendChild(emojiElement);
+
+        // Fade in immediately and then fade out
+        emojiElement.style.transition = 'opacity 0.5s ease-in, opacity 2.5s ease-out 0.5s';
+        setTimeout(() => { emojiElement.style.opacity = initialOpacity; }, 200);
+        setTimeout(() => { emojiElement.remove(); }, 3000); // Remove after fade out
+    }
+
+    function displayEmojiGrid(emojiCode, totalRows, totalCols, emojiSpacing, baseWaveDelay, direction, maxEmojiOpacity) {
+        console.log(`Displaying emoji grid for ${emojiCode} with rows: ${totalRows}, cols: ${totalCols}`);
+        let opacityDecay = maxEmojiOpacity / Math.max(totalRows, totalCols);
+        for (let row = 0; row < totalRows; row++) {
+            for (let col = 0; col < totalCols; col++) {
+                let waveDelay;
+                switch (direction) {
+                    case 0: // TL/BR
+                        waveDelay = baseWaveDelay * (row + col);
+                        break;
+                    case 1: // TR/BL
+                        waveDelay = baseWaveDelay * (totalCols - col + row);
+                        break;
+                    case 2: // BR/TL
+                        waveDelay = baseWaveDelay * (totalRows - row + totalCols - col);
+                        break;
+                    case 3: // BL/TR
+                        waveDelay = baseWaveDelay * (totalRows - row + col);
+                        break;
+                }
+
+                let currentOpacity = maxEmojiOpacity - (opacityDecay * Math.max(row, col));
+                if (currentOpacity > 0) {
+                    setTimeout(() => {
+                        createAndAnimateEmoji(emojiCode, row, col, emojiSpacing, currentOpacity);
+                    }, waveDelay);
+                }
+            }
+        }
+    }
+
+
+    function updateEmojiGrid(emojiMapping, emojiSize) {
+        console.log(`Updating emoji grid with size: ${emojiSize}`);
+
+        let emojiSpacing = emojiSize;
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+        const baseWaveDelay = 100;
+        let direction = 0; // Initial direction
+
+        Object.values(emojiMapping).forEach((emojiCode, index) => {
+            setTimeout(() => {
+                displayEmojiGrid(emojiCode, totalRows, totalCols, emojiSpacing, baseWaveDelay, direction);
+                direction = (direction + 1) % 4; // Rotate direction for each emoji
+            }, index * (totalRows * totalCols * baseWaveDelay + 3000));
+        });
+    }
+
+
+  function displayEmojis(emojiMapping) {
+    console.log('Displaying emojis');
+
+      const emojiSize = 30; // Set a fixed size for emojis
+      updateEmojiGrid(emojiMapping, emojiSize);
+      window.addEventListener('resize', () => updateEmojiGrid(emojiMapping, emojiSize));
+  }
+
+
+function changeBackground(paragraph) {
+    document.querySelectorAll('.gradient-background').forEach(bg => bg.style.opacity = 0);
+    document.querySelectorAll('.logo-container .logo-wrapper').forEach(wrapper => {
+        wrapper.style.display = 'none'; // Hide all logos initially
+    });
+
+    if (paragraph.classList.contains('xr-bg')) {
+        document.querySelector('.xrt-gradient').style.opacity = 1;
+        document.getElementById('logo-xr').style.display = 'block'; // Show XR logo
+    } else if (paragraph.classList.contains('infinity27-bg')) {
+        document.querySelector('.i27-gradient').style.opacity = 1;
+        document.getElementById('logo-infinity27').style.display = 'block'; // Show Infinity27 logo
+    } else if (paragraph.classList.contains('yama-studio-bg')) {
+        document.querySelector('.yama-gradient').style.opacity = 1;
+        document.getElementById('logo-yama').style.display = 'block'; // Show Yama Studio logo
+    } else {
+        document.querySelector('.default-gradient').style.opacity = 1;
+    }
+}
+
+    let isSkipping = false;
+    let direction = 0; // Global variable for emoji wave direction
+  let triggeredEmojis = []; // To keep track of already triggered emojis
+
+  function typeNextChar(paragraph, textContainer, fullText, index) {
+      if (index < fullText.length) {
+          textContainer.textContent += fullText.charAt(index);
+          Object.keys(emojiMapping).forEach(key => {
+              if (textContainer.textContent.trim().includes(key) && !triggeredEmojis.includes(key)) {
+                  console.log(`Triggering emoji for key: ${key}`);
+                  triggeredEmojis.push(key);
+                  displayEmojiGrid(emojiMapping[key], totalRows, totalCols, 30, 100, direction, 1);
+                  direction = (direction + 1) % 4; // Update the direction for the next wave
+              }
+          });
+
+          index++;
+          if (!isSkipping) {
+              setTimeout(() => typeNextChar(paragraph, textContainer, fullText, index), getRandomDelay());
+          } else {
+              textContainer.textContent = fullText;
+              index = fullText.length;
+              setTimeout(() => finishParagraph(), getRandomDelay());
+          }
+      } else {
+          finishParagraph();
+      }
+  }
+
+
+      function typeWriter() {
+        let paragraph;
+        if (currentParagraph === 0) {
+            // For the first iteration, type out the h1 header
+            paragraph = document.querySelector('h1');
+        } else {
+            // Check if we've finished typing all paragraphs
+            if (currentParagraph - 1 >= paragraphs.length) {
+                triggerCompletionEffect();
+                return;
+            }
+            // For subsequent iterations, type out the paragraphs
+            paragraph = paragraphs[currentParagraph - 1];
+        }
+        let fullText = paragraph.dataset.fullText;
+        let textContainer = paragraph.querySelector('.text');
+        changeBackground(paragraph);
+        paragraph.style.opacity = 1;
+        textContainer.textContent = '';
+        showTooltip();
+
+        typeNextChar(paragraph, textContainer, fullText, 0);
+    }
+
+    function finishParagraph() {
+        let paragraph;
+        if (currentParagraph === 0) {
+            paragraph = document.querySelector('h1');
+        } else {
+            paragraph = paragraphs[currentParagraph - 1];
+        }
+        currentParagraph++;
+
+        // Check if the finished paragraph is the Yama paragraph
+        if (paragraph.classList && paragraph.classList.contains('yama-studio-bg')) {
+            // Change back to the default gradient
+            document.querySelectorAll('.gradient-background').forEach(bg => bg.style.opacity = 0);
+            document.querySelector('.default-gradient').style.opacity = 1;
+        }
+
+        // Reset isSkipping to false for the next paragraph
+        isSkipping = false;
+        setTimeout(typeWriter, 500);
+    }
+
+
+
+    function triggerCompletionEffect() {
+            let page = document.querySelector('.page');
+            let emojiContainer = document.getElementById('emoji-container');
+            let gradientBackgrounds = document.querySelectorAll('.gradient-background');
+
+            page.style.opacity = 0;
+            emojiContainer.style.opacity = 0;
+            gradientBackgrounds.forEach(bg => bg.style.opacity = 0); // Fade out gradient backgrounds
+
+            page.style.transition = 'opacity 2s';
+            emojiContainer.style.transition = 'opacity 2s';
+            gradientBackgrounds.forEach(bg => bg.style.transition = 'opacity 2s'); // Transition for gradient backgrounds
+
+            setTimeout(showContactButton, 4000); // 4 seconds for fade out
+        }
+
+// Ensure 'showContactButton' function is updated to immediately set button opacity to 1
+function showContactButton() {
+    let container = document.getElementById('social-email-container');
+    container.style.visibility = 'visible'; // Make form visible
+    container.style.display = 'block'; // Ensure the container is displayed
+    container.style.opacity = '1'; // Make form opaque
+    container.classList.add('animate-fade-in-bounce'); // Start the bounce animation
+}
+
+
+window.onload = () => {
+  calculateGridDimensions();
+  initializeParagraphs();
+  updateEmojiGrid(emojiMapping, 30); // Pass emojiMapping and emojiSize
+  typeWriter();
+  displayEmojis(emojiMapping);
+};
+
+    // Emoji Grid Responsive Listener
+    window.addEventListener('resize', () => {
+    calculateGridDimensions();
+    updateEmojiGrid(emojiMapping, 30); // Assuming emojiMapping is a global variable
+});
+    // Event listener for spacebar
+    window.addEventListener('keydown', function(event) {
+      if (event.code === 'Space' && currentParagraph < paragraphs.length) {
+          event.preventDefault();
+          if (!isSkipping) {
+              isSkipping = true; // Start skipping
+              document.getElementById('tooltip').style.display = 'none';
+          }
+      }
+  });
+
+
+  </script>
+</body>
+
+</html>
